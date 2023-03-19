@@ -1,23 +1,35 @@
 # Requirements
-Make sure that you have the following installed:
+This project requires the following:
 - [node](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04) 
-- npm 
-- [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) and start the mongodb service with `sudo service mongod start`
+- [npm] https://nodejs.dev/en/learn/an-introduction-to-the-npm-package-manager/
+- [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
 
-## Navigate to the Client Folder 
- `cd client`
+## Dockerfile directives used in the creation each container.
+`FROM`
+`WORKDIR`
+`COPY`
+`RUN`
+`CMD`
+`ENVIRONMENT`
 
-## Run the folllowing command to install the dependencies 
- `npm install`
+## Docker-compose Networking (Application port allocation and a bridge network implementation) where necessary.
+`Created a single bridge network to connect both client and backend`
+ `network1:`
 
-## Run the folllowing to start the app
- `npm start`
+## Git workflow used to achieve the task.
+ `Centralized GIT workflow`
 
-## Open a new terminal and run the same commands in the backend folder
- `cd ../backend`
+## Docker-compose volume definition and usage (where necessary).
+ `volumes: data: volume required for backend app`
 
- `npm install`
+ ## Database container added from latest Mongodb repository.
+ `image: mongo:latest`
 
- `npm start`
+ ## Successful running of the applications and if not, debugging measures applied.
+ `Application was able to run successfully when provided credentails on backend/.env`
 
- ### Go ahead a nd add a product (note that the price field only takes a numeric input)
+ ## Good practices such as Docker image tag naming standards for ease of identification of images and containers.
+ `Implemented semver on images yolo_backend:v1.0 and yolo_client:v1.0`
+
+
+ ### Go ahead and add a product (note that the price field only takes a numeric input)
