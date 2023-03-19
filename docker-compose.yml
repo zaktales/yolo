@@ -13,8 +13,6 @@ services:
     volumes:
       - mongo_vol:/data/db
     environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: password
       MONGO_INITDB_DATABASE: yolomy
     ports:
       - "27018:27017"
@@ -27,6 +25,7 @@ services:
       - network1
     environment:
         MONGODB_URI: mongodb://mongodb:27017/yolomy
+        MONGO_INITDB_DATABASE: yolomy
     ports:
       - "5000:5000"
     volumes:
