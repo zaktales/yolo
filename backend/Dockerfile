@@ -1,6 +1,6 @@
 # ==== CONFIGURE =====
 # Use a Node alpine base image
-FROM node:12-alpine
+FROM node:alpine
 
 # Set the working directory to /app inside the container
 WORKDIR /app
