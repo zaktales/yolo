@@ -1,0 +1,54 @@
+version: '3.2'
+networks:
+  network1:
+
+services:
+
+  mongodb:
+    image: mongo:latest
+    restart: always
+    container_name: mongodb
+    networks:
+      - network1
+    volumes:
+      - mongo_vol:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: yolomy
+    ports:
+      - "27018:27017"
+
+  backend:
+    #build: ./backend
+    #container_name: yolo-backend
+    image: zaktales/yolo-backend:v1.0
+    networks:
+      - network1
+    environment:
+        MONGODB_URI: mongodb://mongodb:27017/yolomy
+    ports:
+      - "5000:5000"
+    volumes:
+      - mongo_vol:/data/db
+    depends_on:
+        - mongodb
+
+  client:
+    #build: ./client
+    #container_name: yolo-client
+    image: zaktales/yolo-client:v1.0
+    networks:
+      - network1
+    tty: true
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    stdin_open: true
+    volumes:
+      - mongo_vol:/data/db
+  
+volumes:
+  mongo_vol:
+    driver: local
