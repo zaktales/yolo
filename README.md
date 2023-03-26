@@ -29,7 +29,7 @@ This project requires the following:
  `Application was able to run successfully when provided credentails on backend/.env`
 
  ## Good practices such as Docker image tag naming standards for ease of identification of images and containers.
- `Implemented semver on images yolo_backend:v1.0 and yolo_client:v1.0`
+ `Implemented semver on images yolo_backend:v1.0.1 and yolo_client:v1.0.1`
 
 
  ### Go ahead and add a product (note that the price field only takes a numeric input)
