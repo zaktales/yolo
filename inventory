@@ -1,1 +1,2 @@
-ecommerce ansible_host=192.168.60.10
+localhost ansible_connection=local
+#ecommerce ansible_host=192.168.60.10
