@@ -18,3 +18,27 @@
     - name: install npm
       apt: name=npm
       
+    - name: Install aptitude
+      apt:
+        name: aptitude
+        state: latest
+        update_cache: true
+
+    - name: Install required system packages
+      apt:
+        pkg:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+          - python3-pip
+          - virtualenv
+          - python3-setuptools
+        state: latest
+        update_cache: true
+
+    - name: run docker-compose
+      become_user: vagrant
+      docker_compose:
+        project_src: /home/vagrant/yolo
+        state: present

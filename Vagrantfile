@@ -24,6 +24,7 @@ Vagrant.configure(2) do |config|
   end
   #DHCP — comment this out if planning on using NAT instead
   config.vm.network "private_network", ip: "192.168.60.10"
+  config.vm.network "public_network"
   # Disable default Vagrant folder
   config.ssh.insert_key = false
   config.vm.synced_folder ".", "/vagrant", disabled: true
