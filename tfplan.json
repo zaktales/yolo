@@ -1,0 +1,155 @@
+{
+  "format_version": "1.1",
+  "terraform_version": "1.4.4",
+  "planned_values": {
+    "root_module": {
+      "resources": [
+        {
+          "address": "virtualbox_vm.ecommerce[0]",
+          "mode": "managed",
+          "type": "virtualbox_vm",
+          "name": "ecommerce",
+          "index": 0,
+          "provider_name": "registry.terraform.io/terra-farm/virtualbox",
+          "schema_version": 0,
+          "values": {
+            "boot_order": null,
+            "checksum": null,
+            "checksum_type": null,
+            "cpus": 2,
+            "image": "https://app.vagrantup.com/geerlingguy/boxes/ubuntu2004/versions/1.0.4/providers/virtualbox.box",
+            "memory": "512 mib",
+            "name": "ecommerceterra",
+            "network_adapter": [
+              {
+                "device": "IntelPro1000MTServer",
+                "host_interface": "vboxnet1",
+                "type": "hostonly"
+              }
+            ],
+            "optical_disks": null,
+            "status": "running",
+            "url": null,
+            "user_data": null
+          },
+          "sensitive_values": {
+            "network_adapter": [
+              {}
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "resource_changes": [
+    {
+      "address": "virtualbox_vm.ecommerce[0]",
+      "mode": "managed",
+      "type": "virtualbox_vm",
+      "name": "ecommerce",
+      "index": 0,
+      "provider_name": "registry.terraform.io/terra-farm/virtualbox",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "boot_order": null,
+          "checksum": null,
+          "checksum_type": null,
+          "cpus": 2,
+          "image": "https://app.vagrantup.com/geerlingguy/boxes/ubuntu2004/versions/1.0.4/providers/virtualbox.box",
+          "memory": "512 mib",
+          "name": "ecommerceterra",
+          "network_adapter": [
+            {
+              "device": "IntelPro1000MTServer",
+              "host_interface": "vboxnet1",
+              "type": "hostonly"
+            }
+          ],
+          "optical_disks": null,
+          "status": "running",
+          "url": null,
+          "user_data": null
+        },
+        "after_unknown": {
+          "id": true,
+          "network_adapter": [
+            {
+              "ipv4_address": true,
+              "ipv4_address_available": true,
+              "mac_address": true,
+              "status": true
+            }
+          ]
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+          "network_adapter": [
+            {}
+          ]
+        }
+      }
+    }
+  ],
+  "configuration": {
+    "provider_config": {
+      "virtualbox": {
+        "name": "virtualbox",
+        "full_name": "registry.terraform.io/terra-farm/virtualbox",
+        "version_constraint": "0.2.2-alpha.1"
+      }
+    },
+    "root_module": {
+      "resources": [
+        {
+          "address": "virtualbox_vm.ecommerce",
+          "mode": "managed",
+          "type": "virtualbox_vm",
+          "name": "ecommerce",
+          "provider_config_key": "virtualbox",
+          "provisioners": [
+            {
+              "type": "local-exec",
+              "expressions": {
+                "command": {
+                  "constant_value": "ansible-playbook -i 192.168.60.10 ecommerce.yml"
+                }
+              }
+            }
+          ],
+          "expressions": {
+            "cpus": {
+              "constant_value": 2
+            },
+            "image": {
+              "constant_value": "https://app.vagrantup.com/geerlingguy/boxes/ubuntu2004/versions/1.0.4/providers/virtualbox.box"
+            },
+            "memory": {
+              "constant_value": "512 mib"
+            },
+            "name": {
+              "constant_value": "ecommerceterra"
+            },
+            "network_adapter": [
+              {
+                "host_interface": {
+                  "constant_value": "vboxnet1"
+                },
+                "type": {
+                  "constant_value": "hostonly"
+                }
+              }
+            ]
+          },
+          "schema_version": 0,
+          "count_expression": {
+            "constant_value": 1
+          }
+        }
+      ]
+    }
+  }
+}
