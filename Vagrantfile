@@ -24,6 +24,7 @@ Vagrant.configure(2) do |config|
   end
   #DHCP — comment this out if planning on using NAT instead
   config.vm.network "private_network", ip: "192.168.60.10"
+  config.vm.network "forwarded_port", guest: 3000, host: 3000
   config.vm.network "public_network"
   # Disable default Vagrant folder
   config.ssh.insert_key = false
@@ -32,9 +33,13 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
     apt-get install -y git
-    apt-get install -y nodejs
+    apt-get install -y nodejs npm
     apt-get install -y build-essential
-    npm install -g npm
+    apt-get install -y python3 python3-setuptools
+    apt-get install -y python3-pip python3-requests
+    apt-get install -y aptitude
+    apt-get install -y python3
+    apt-get install -y net-tools
     apt-get update
     apt-get upgrade -y
     apt-get autoremove -y

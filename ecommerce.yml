@@ -1,7 +1,7 @@
 ---
 - hosts: all
   become: yes
-  become_method: sudo
+  gather_facts: no
   tasks:
     - name: Create a Docker group
       group: name=docker state=present
@@ -11,19 +11,11 @@
       apt: name=docker.io state=present
     - name: Enable and Start Docker Daemon
       service: name=docker state=started enabled=yes
-    - name: add apt key for nodesource
-      apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key
-    - name: install nodejs
-      apt: name=nodejs
-    - name: install npm
-      apt: name=npm
+    
       
-    - name: Install aptitude
-      apt:
-        name: aptitude
-        state: latest
-        update_cache: true
-
+    - name: Install Forever (to run our Node.js app).
+      npm: name=forever global=yes state=present
+    
     - name: Install required system packages
       apt:
         pkg:
@@ -31,11 +23,16 @@
           - ca-certificates
           - curl
           - software-properties-common
-          - python3-pip
           - virtualenv
-          - python3-setuptools
         state: latest
         update_cache: true
+
+    - name: Clone a github repository
+      git:
+        repo: https://github.com/zaktales/yolo.git
+        dest: /home/vagrant/yolo
+        clone: yes
+        update: yes
 
     - name: run docker-compose
       become_user: vagrant
